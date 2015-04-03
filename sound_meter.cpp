@@ -2,10 +2,10 @@
    Date: 01-04-2015
    Autor: J. Lucas Grillo
 */
-#include "sound_meter.h"
+#include <sound_meter.h>
 
 // Returns noise level in decibells
-long get_dbs(int *input = NULL) {
-   int x = (!input) ? analogRead(ANALOG_SOUND_PIN) : *input;
-   return 20 * log ( x / ADC_SOUND_REF ) + DB_SOUND_REF;
+double get_abs_db(int *input, int sound_pin) {
+   int x = (!input) ? analogRead(sound_pin) : *input;
+   return 20 * log((double)x / (double)ADC_SOUND_REF) + DB_SOUND_REF;
 }
